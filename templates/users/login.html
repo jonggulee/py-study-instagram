@@ -1,12 +1,17 @@
+{% load static %}
 <!doctype html>
 <html lang="ko">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 <body>
-    <div>
-        <h1>Login</h1>
+    <div id="login">
         <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">로그인</button>
+            <h1>Instagram</h1>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-login">로그인</button>
+        </form>
     </div>
 </body>
 </html>

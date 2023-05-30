@@ -18,7 +18,7 @@ def login_view(request):
                 login(request, user)
                 return redirect("/posts/feeds/")
             else:
-                print("로그인에 실패했습니다.")
+                form.add_error(None, "입력한 자격증명에 해당하는 사용자가 없습니다.")
         
         context = {
             "form": form,
