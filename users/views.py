@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from users.forms import LoginForm
 
@@ -30,3 +30,7 @@ def login_view(request):
             "form": form,
         }
         return render(request, "users/login.html", context)
+    
+def logout_view(request):
+    logout(request)
+    return redirect("/users/login/")
