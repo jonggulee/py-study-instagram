@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fb4bae8-5e5d-4a55-81b2-6967c5ed9d81" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/docker-image.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/docker-image.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2fb4bae8-5e5d-4a55-81b2-6967c5ed9d81" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685508589119</updated>
       <workItem from="1685508590375" duration="1114000" />
-      <workItem from="1685582962225" duration="1809000" />
+      <workItem from="1685582962225" duration="2143000" />
     </task>
     <servers />
   </component>
