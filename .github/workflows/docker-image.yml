@@ -45,4 +45,4 @@ jobs:
           sudo docker stop py-study-instagram
           sudo docker rm py-study-instagram
           sudo docker pull ${{ secrets.DOCKERHUB_ID }}/py-study-instagram:${{ steps.commit.outputs.short }}
-          sudo docker run --name py-study-instagram -p 8000:8000 -d jujihoon01/py-study-instagram:${{ steps.commit.outputs.short }}
+          sudo docker run --name py-study-instagram -p 8000:8000 -d ${{ secrets.DOCKERHUB_ID }}/py-study-instagram:latest
