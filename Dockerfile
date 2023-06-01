@@ -1,5 +1,5 @@
 # build docker image
-# docker build -t jujihoon01/py-study-instagram .
+# docker build -t ${{ docker id }}/py-study-instagram .
 
 FROM python:3.8.16
 
@@ -12,4 +12,4 @@ EXPOSE 8000
 CMD ["python","manage.py","runserver","0.0.0.0:8000"]
 
 # run docker image
-# docker run --name py-study-instagram -p 8000:8000 -d jujihoon01/py-study-instagram
+# docker run --name py-study-instagram -p 8000:8000 -d ${{ docker id }}/py-study-instagram
