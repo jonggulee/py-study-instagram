@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fb4bae8-5e5d-4a55-81b2-6967c5ed9d81" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/653620c3-3ae3-4e0d-81c0-0f3c64481c5b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/653620c3-3ae3-4e0d-81c0-0f3c64481c5b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,6 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685508589119</updated>
       <workItem from="1685508590375" duration="1114000" />
+      <workItem from="1685582962225" duration="199000" />
     </task>
     <servers />
   </component>
