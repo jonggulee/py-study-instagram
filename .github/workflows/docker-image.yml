@@ -10,9 +10,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
+    - id: commit
+      uses: pr-mpt/actions-commit-hash@v2
+      with:
+        commit: "${{ github.event.workflow_run.head_sha }}"
+
     - name: Build the Docker image
-      run: docker build -t jujihoon01/py-study-instagram .
+      run: docker build -t ${{ secrets.DOCKERHUB_ID }}/py-study-instagram:${{ steps.commit.outputs.short }} .
       
     - name: Docker-hub login 
       uses: docker/login-action@v2
@@ -21,7 +26,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
         
     - name: Docker-hub push
-      run: docker push jujihoon01/py-study-instagram
+      run: docker push ${{ secrets.DOCKERHUB_ID }}/py-study-instagram:${{ steps.commit.outputs.short }}
       
     - name: SSH remote command
       uses: appleboy/ssh-action@v0.1.10
@@ -33,5 +38,5 @@ jobs:
         script: |
           sudo docker stop py-study-instagram
           sudo docker rm py-study-instagram
-          sudo docker pull jujihoon01/py-study-instagram
-          sudo docker run --name py-study-instagram -p 8000:8000 -d jujihoon01/py-study-instagram
+          sudo docker pull ${{ secrets.DOCKERHUB_ID }}/py-study-instagram:${{ steps.commit.outputs.short }}
+          sudo docker run --name py-study-instagram -p 8000:8000 -d jujihoon01/py-study-instagram:${{ steps.commit.outputs.short }}
