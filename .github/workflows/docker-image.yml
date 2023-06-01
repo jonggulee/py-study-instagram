@@ -15,6 +15,7 @@ jobs:
       uses: pr-mpt/actions-commit-hash@v2
       with:
         commit: "${{ github.event.workflow_run.head_sha }}"
+        prefix: "commit-"
 
     - name: Build the Docker image
       run: docker build -t ${{ secrets.DOCKERHUB_ID }}/py-study-instagram:${{ steps.commit.outputs.short }} .
