@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<nav>
-    <h1>
-        <a href="/posts/feeds/">Instagram</a>
-    </h1>
-    <a href="/posts/post_add/">Add post</a>
-    <a href="/users/logout/">Logout</a>
-</nav>
+<div id="wrap">
+    <nav>
+        <h1><a href="/posts/feeds/">Instagram</a></h1>
+        <a href="/posts/post_add/">Add post</a>
+        <a href="/users/logout/">Logout</a>
+    </nav>
+</div>
 <div id="feeds" class="post-container">
     {% for post in posts %}
         <article id="post-{{ post.id }}" class="post">
@@ -67,8 +67,8 @@
     {% endfor %}
 </div>
 <script>
-    const elms = document.getElmementsByClassName('splide')
-    for (let i =0; i < elms.length; 1++) {
+    const elms = document.getElementsByClassName('splide')
+    for (let i = 0; i < elms.length; i++) {
         new Splide(elms[i]).mount();
     }
 </script>
