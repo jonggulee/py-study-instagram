@@ -6,7 +6,7 @@ from posts.forms import CommentForm, PostForm
 
 def feeds(request):
     if not request.user.is_authenticated:
-        return redirect("/users/login/")
+        return redirect("/users/login2/")
     
     posts = Post.objects.all()
     comment_form = CommentForm()
