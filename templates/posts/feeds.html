@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div id="wrap">
-    <nav>
-        <h1><a href="/posts/feeds/">Instagram</a></h1>
-        <a href="/posts/post_add/">Add post</a>
-        <a href="/users/logout/">Logout</a>
-    </nav>
-</div>
-<div id="feeds" class="post-container">
+<nav id="gnb">
+    <h1><a href="/posts/feeds/">Instagram</a></h1>
+    <a href="/posts/post_add/">Add post</a>
+    <a href="/users/logout/">Logout</a>
+</nav>
+<div id="feeds" class="post-container body-wrapper">
     {% for post in posts %}
         <article id="post-{{ post.id }}" class="post">
             <header class="post-header">

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<nav>
+<nav id="gnb">
     <h1>
         <a href="/posts/feeds/">Instagram</a>
     </h1>
     <a href="/users/logout/">Logout</a>
 </nav>
-<div id="post-add">
+<div id="post-add" class="body-wrapper body-wrapper">
     <h1>Post 작성</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
