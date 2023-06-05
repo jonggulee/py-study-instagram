@@ -1,5 +1,7 @@
+from django.db.models import ManyToManyField
+from django.forms import CheckboxSelectMultiple
 from django.contrib import admin
-from posts.models import Post, PostImage, Comment
+from posts.models import Post, PostImage, Comment, HashTag
 import admin_thumbnails
 
 class CommentInline(admin.TabularInline):
@@ -22,6 +24,10 @@ class PostAdmin(admin.ModelAdmin):
         PostImageInline,
     ]
 
+    formfield_overrides = {
+        ManyToManyField: {"widget": CheckboxSelectMultiple},
+    }
+
 @admin.register(PostImage)
 class PostImageAdmin(admin.ModelAdmin):
     list_dislay = [
@@ -37,3 +43,7 @@ class CommentAdmin(admin.ModelAdmin):
         "post",
         "content",
     ]
+
+@admin.register(HashTag)
+class HashTagAdmin(admin.ModelAdmin):
+    pass
