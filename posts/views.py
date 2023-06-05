@@ -21,12 +21,17 @@ def feeds(request):
 def comment_add(request):
     form = CommentForm(data=request.POST)
     if form.is_valid():
-        print(form)
         comment = form.save(commit=False)
         comment.user = request.user
         comment.save()
-        url = reverse("posts:feeds") + f"#post-{comment.post.id}"
-        return HttpResponseRedirect(url)
+
+        if request.GET.get("next"):
+            url_next = request.GET.get("next")
+
+        else:
+            url_next = reverse("posts:feeds") + f"#post-{comment.post.id}"
+        
+        return HttpResponseRedirect(url_next)
 
 @require_POST
 def comment_delete(request, comment_id):
