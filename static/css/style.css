@@ -428,3 +428,31 @@ article.post .post-comment-create button:hover {
   color: white;
   background-color: #0095f6;
 }
+
+.post-grid-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.post-grid {
+  display: flex;
+  width: 30.6666666667vw;
+  height: 30.6666666667vw;
+  margin-right: 2vw;
+  margin-bottom: 2vw;
+  background-color: #eee;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.post-grid:nth-of-type(3n) {
+  margin-right: 0;
+}
+.post-grid a {
+  display: flex;
+}
+.post-grid img {
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center center;
+}

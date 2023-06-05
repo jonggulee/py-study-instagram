@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponseRedirect, HttpResponseForbidden
-from posts.models import Post, Comment, PostImage
+from posts.models import Post, Comment, PostImage, HashTag
 from posts.forms import CommentForm, PostForm
 
 def feeds(request):
@@ -60,3 +60,18 @@ def post_add(request):
 
     context = {"form": form}
     return render(request, 'posts/post_add.html', context)
+
+def tags(request, tag_name):
+    try:
+        tag = HashTag.objects.get(name=tag_name)
+    except HashTag.DoesNotExist:
+        posts = Post.objects.none()
+    else:    
+        posts = Post.objects.filter(tags=tag)
+    
+    context = {
+        "tag_name": tag_name,
+        "posts": posts,
+    }
+    return render(request, 'posts/tags.html', context)
+
