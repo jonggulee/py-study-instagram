@@ -1,38 +1,15 @@
-{% extends 'base_nav.html' %}
+{% extends 'base_profile.html' %}
 
-{% block content %}
-<div id="profile">
-    <div class="info">
-        {% if user.profile_image %}
-            <img src="{{ user.profile_image.url }}">
-        {% endif %}
-
-        <div class="info-texts">
-            <h1>{{ user.username }}</h1>
-            <div class="counts">
-                <dl>
-                    <dt>Posts</dt>
-                    <dd>{{ user.post_set.count }}</dd>
-                    <dt>Followers</dt>
-                    <dd>{{ user.followers.count }}</dd>
-                    <dt>Following</dt>
-                    <dd>{{ user.following.count }}</dd>
-                </dl>
+{% block bottom_data %}
+<div class="post-grid-container">
+    {% for post in user.post_set.all %}
+        {% if post.postimage_set.first and post.postimage_set.first.photo %}
+            <div class="post-grid">
+                <a href="{% url 'posts:post_detail' post_id=post.id %}">
+                    <img src="{{ post.postimage_set.first.photo.url }}" alt="">
+                </a>
             </div>
-            <p>{{ user.short_description }}</p>
-        </div>
-    </div>
-
-    <div class="post-grid-container">
-        {% for post in user.post_set.all %}
-            {% if post.postimage_set.first and post.postimage_set.first.photo %}
-                <div class="post-grid">
-                    <a href="{% url 'posts:post_detail' post_id=post.id %}">
-                        <img src="{{ post.postimage_set.first.photo.url }}" alt="">
-                    </a>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
+        {% endif %}
+    {% endfor %}
 </div>
 {% endblock %}
