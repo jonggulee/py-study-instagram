@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from users.forms import LoginForm, SignupForm
@@ -74,3 +76,16 @@ def following(request, user_id):
         "relationships": relationships,
     }
     return render(request, 'users/following.html', context)
+
+def follow(request, user_id):
+    user = request.user
+    target_user = get_object_or_404(User, id=user_id)
+
+    if target_user in user.following.all():
+        user.following.remove(target_user)
+    
+    else:
+        user.following.add(target_user)
+
+    url_next = request.GET.get("next") or reverse("users:profile", args=[user.id])
+    return HttpResponseRedirect(url_next)
