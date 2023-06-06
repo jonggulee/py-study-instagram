@@ -12,7 +12,7 @@ class LoginForm(forms.Form):
     )
     password = forms.CharField(
         min_length=4,
-        widget=forms.TextInput(
+        widget=forms.PasswordInput(
             attrs={"placeholder": "비밀번호 (4자리 이상)"},
         ),
     )
