@@ -35,9 +35,7 @@ class CustomUserAdmin(UserAdmin):
         ("연관객체", {"fields": ("like_posts",)}),
         ("중요한 일정", {"fields": ("last_login", "date_joined")}),
     ]
-
     inlines = [
         FollowersInline,
         FollowingInline,
     ]
-

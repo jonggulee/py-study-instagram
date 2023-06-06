@@ -13,7 +13,7 @@ class User(AbstractUser):
     )
     following = models.ManyToManyField(
         "self",
-        verbose_name="팔로우 중인 사람들",
+        verbose_name="팔로우 중인 사용자들",
         related_name="followers",
         symmetrical=False,
         through="users.Relationship",

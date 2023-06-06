@@ -2,7 +2,7 @@
     <header class="post-header">
         <a href="{% url 'users:profile' user_id=post.user.id %}">
             {% if post.user.profile_image %}
-                <img src="{{ post.user.profile_image.url }}">
+                <img src="{{ post.user.profile_image.url }}" alt="">
             {% endif %}
             <span>{{ post.user.username }}</span>
         </a>
