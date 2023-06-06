@@ -1,6 +1,8 @@
+from typing import Optional
 from django.db.models import ManyToManyField
 from django.forms import CheckboxSelectMultiple
 from django.contrib import admin
+from django.http.request import HttpRequest
 from posts.models import Post, PostImage, Comment, HashTag
 import admin_thumbnails
 
@@ -13,6 +15,15 @@ class PostImageInline(admin.TabularInline):
     model = PostImage
     extra = 1
 
+class LikeUserInline(admin.TabularInline):
+    model = Post.like_users.through
+    verbose_name = "좋아요 한 User"
+    verbose_name_plural = f"{verbose_name} 목록"
+    extra = 1
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = [
@@ -22,6 +33,7 @@ class PostAdmin(admin.ModelAdmin):
     inlines = [
         CommentInline,
         PostImageInline,
+        LikeUserInline,
     ]
 
     formfield_overrides = {
