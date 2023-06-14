@@ -1,5 +1,7 @@
+import jwt, datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from users.forms import LoginForm, SignupForm
@@ -19,7 +21,18 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect("posts:feeds")
+                
+                payload = {
+                    'user_id': user.id,
+                    'username': user.username,
+                    'exp': datetime.datetime.now() + datetime.timedelta(seconds=60)
+                }
+
+                token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+                response = redirect("posts:feeds")
+                response.set_cookie('jwt_token', token)
+                
+                return response
             else:
                 form.add_error(None, "입력한 자격증명에 해당하는 사용자가 없습니다.")
         
@@ -36,7 +49,9 @@ def login_view(request):
     
 def logout_view(request):
     logout(request)
-    return redirect("users:login")
+    response = redirect("users:login")
+    response.delete_cookie('jwt_token')
+    return response
 
 def signup(request):
     if request.method == "POST":
