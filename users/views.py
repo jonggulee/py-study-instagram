@@ -8,8 +8,9 @@ from users.forms import LoginForm, SignupForm
 from users.models import User
 
 def login_view(request):
-    if request.user.is_authenticated:
-        return redirect("posts:feeds")
+    # JWT 인증 방식으로 인한 제외
+    # if request.user.is_authenticated:
+    #     return redirect("posts:feeds")
     
     if request.method == "POST":
         form = LoginForm(data=request.POST)
@@ -28,7 +29,7 @@ def login_view(request):
                     'exp': datetime.datetime.now() + datetime.timedelta(seconds=60)
                 }
 
-                token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+                token = jwt.encode(payload, "1d9c20a50e3d66e334ce19e1a04eb7c13266641e0cf8bf61d3b23d0f966de8fe395b03e86d38e2eb2ee57a2937a4bbdcf3b8476de495b6e04e9a92d7b200e86e", algorithm="HS256")
                 response = redirect("posts:feeds")
                 response.set_cookie('jwt_token', token)
                 
