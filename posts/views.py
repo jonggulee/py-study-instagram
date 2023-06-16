@@ -42,6 +42,10 @@ def feeds(request):
 
 @require_POST
 def comment_add(request):
+    token = request.COOKIES.get('jwt_token')
+    if not token or not validate_token(token):
+        return redirect("users:login")
+    
     form = CommentForm(data=request.POST)
     if form.is_valid():
         comment = form.save(commit=False)
@@ -58,6 +62,10 @@ def comment_add(request):
 
 @require_POST
 def comment_delete(request, comment_id):
+    token = request.COOKIES.get('jwt_token')
+    if not token or not validate_token(token):
+        return redirect("users:login")
+
     comment = Comment.objects.get(id=comment_id)
     if comment.user == request.user:
         comment.delete()
@@ -67,6 +75,10 @@ def comment_delete(request, comment_id):
         return HttpResponseForbidden("이 댓글을 삭제할 권한이 없습니다")
 
 def post_add(request):
+    token = request.COOKIES.get('jwt_token')
+    if not token or not validate_token(token):
+        return redirect("users:login")
+    
     if request.method == "POST":
         form = PostForm(request.POST)
 
@@ -97,6 +109,10 @@ def post_add(request):
     return render(request, 'posts/post_add.html', context)
 
 def tags(request, tag_name):
+    token = request.COOKIES.get('jwt_token')
+    if not token or not validate_token(token):
+        return redirect("users:login")
+
     try:
         tag = HashTag.objects.get(name=tag_name)
     except HashTag.DoesNotExist:
@@ -111,6 +127,10 @@ def tags(request, tag_name):
     return render(request, 'posts/tags.html', context)
 
 def post_detail(request, post_id):
+    token = request.COOKIES.get('jwt_token')
+    if not token or not validate_token(token):
+        return redirect("users:login")
+
     post = Post.objects.get(id=post_id)
     comment_form = CommentForm()
     context = {
@@ -120,6 +140,10 @@ def post_detail(request, post_id):
     return render(request, 'posts/post_detail.html', context)
 
 def post_like(request, post_id):
+    token = request.COOKIES.get('jwt_token')
+    if not token or not validate_token(token):
+        return redirect("users:login")
+
     post = Post.objects.get(id=post_id)
     user = request.user
 
