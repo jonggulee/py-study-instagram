@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from users.forms import LoginForm, SignupForm
 from users.models import User
+from allauth.socialaccount import providers
 
 def login_view(request):
     # JWT 인증 방식으로 인한 제외
@@ -47,6 +48,12 @@ def login_view(request):
             "form": form,
         }
         return render(request, "users/login.html", context)
+
+def login_github(request):
+    github_provider = providers.registry.by_id('github')
+    login_url = github_provider.get_login_url(request)
+    print(login_url)
+    return redirect(login_url)
     
 def logout_view(request):
     logout(request)
