@@ -23,11 +23,13 @@ def login_view(request):
 
             if user:
                 login(request, user)
+                now = datetime.datetime.now() + datetime.timedelta(seconds=5)
+                formatted_date = now.strftime("%Y%m%d%H%M%S")
                 
                 payload = {
                     'user_id': user.id,
                     'username': user.username,
-                    'exp': datetime.datetime.now() + datetime.timedelta(seconds=60)
+                    'exp': formatted_date
                 }
 
                 token = jwt.encode(payload, "1d9c20a50e3d66e334ce19e1a04eb7c13266641e0cf8bf61d3b23d0f966de8fe395b03e86d38e2eb2ee57a2937a4bbdcf3b8476de495b6e04e9a92d7b200e86e", algorithm="HS256")
