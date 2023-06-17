@@ -123,21 +123,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 2
-LOGIN_REDIRECT_URL = '/' 
+# `allauth` 설정 
+SITE_ID = 3
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
 # ACCOUNT_SESSION_REMEMBER = False
 # ACCOUNT_USERNAME_REQUIRED = False
 # ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
-SOCIALACCOUNT_LOGIN_ON_GET = True
-SOCIALACCOUNT_AUTO_SIGNUP = True
-SOCIALACCOUNT_ADAPTER = "config.socialAdapter.CustomSocialAccountAdapter"
+# SOCIALACCOUNT_AUTO_SIGNUP = True
+# SOCIALACCOUNT_ADAPTER = "config.socialAdapter.CustomSocialAccountAdapter"
 
 
 SOCIALACCOUNT_PROVIDERS = {
