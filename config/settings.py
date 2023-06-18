@@ -23,7 +23,8 @@ TEMPLATES_DIR = BASE_DIR / 'templates'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_!r&s&0kt48v+e*r#otywc=+v@x90y*5hice300f2=n&#kebw7'
+# SECRET_KEY = 'django-insecure-_!r&s&0kt48v+e*r#otywc=+v@x90y*5hice300f2=n&#kebw7'
+SECRET_KEY = '1d9c20a50e3d66e334ce19e1a04eb7c13266641e0cf8bf61d3b23d0f966de8fe395b03e86d38e2eb2ee57a2937a4bbdcf3b8476de495b6e04e9a92d7b200e86e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -129,14 +130,14 @@ AUTHENTICATION_BACKENDS = [
 
 # `allauth` 설정 
 SITE_ID = 3
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/posts/feeds/'
 SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
 # ACCOUNT_SESSION_REMEMBER = False
 # ACCOUNT_USERNAME_REQUIRED = False
 # ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 # SOCIALACCOUNT_AUTO_SIGNUP = True
-# SOCIALACCOUNT_ADAPTER = "config.socialAdapter.CustomSocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "users.adapters.UsersSocialAccountAdapter"
 
 
 SOCIALACCOUNT_PROVIDERS = {
