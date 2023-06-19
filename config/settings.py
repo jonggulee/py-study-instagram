@@ -135,8 +135,6 @@ LOGIN_REDIRECT_URL = '/posts/feeds/'
 SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
-# SOCIALACCOUNT_ADAPTER = "users.adapters.UsersSocialAccountAdapter"
-
 
 SOCIALACCOUNT_PROVIDERS = {
     'github': {

@@ -13,8 +13,6 @@ def validate_token(token):
         payload = jwt.decode(token, "1d9c20a50e3d66e334ce19e1a04eb7c13266641e0cf8bf61d3b23d0f966de8fe395b03e86d38e2eb2ee57a2937a4bbdcf3b8476de495b6e04e9a92d7b200e86e", algorithms=["HS256"])
         exp_timestamp = payload.get('exp', 0)
         current_timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-        print(type(current_timestamp), type(exp_timestamp))
-        print('current_timestamp:', current_timestamp, 'exp_timestamp:', exp_timestamp)
         if exp_timestamp > current_timestamp:
             return payload
         else:
@@ -23,10 +21,6 @@ def validate_token(token):
         return None
 
 def feeds(request):
-    # JWT 인증 방식으로 인한 제외
-    # if not request.user.is_authenticated:
-    #     return redirect("users:login")
-    
     token = request.COOKIES.get('jwt_token')
     if not token or not validate_token(token):
         return redirect("users:login")
@@ -75,6 +69,8 @@ def comment_delete(request, comment_id):
 
 def post_add(request):
     token = request.COOKIES.get('jwt_token')
+    print(token)
+    print(validate_token(token))
     if not token or not validate_token(token):
         return redirect("users:login")
     

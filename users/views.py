@@ -17,7 +17,7 @@ def create_token(payload):
     return token
 
 def create_payload(user_id, username):
-    now = datetime.datetime.now() + datetime.timedelta(seconds=5)
+    now = datetime.datetime.now() + datetime.timedelta(seconds=300)
     formatted_date = now.strftime("%Y%m%d%H%M%S")
     
     payload = {
