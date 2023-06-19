@@ -8,6 +8,10 @@ from users.forms import LoginForm, SignupForm
 from users.models import User
 from allauth.socialaccount import providers
 
+from allauth.account.signals import user_logged_in
+from django.dispatch import receiver
+
+
 def create_token(payload):
     token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
     return token
@@ -23,6 +27,13 @@ def create_payload(user_id, username):
     }
     
     return payload
+
+@receiver(user_logged_in)
+def issue_jwt_token(sender, request, user, **kwargs):
+    payload = create_payload(user.id, user.username)
+    token = create_token(payload)
+    request.jwt_token = token
+    # return response
 
 def login_view(request):
     # JWT 인증 방식으로 인한 제외
@@ -43,6 +54,7 @@ def login_view(request):
                 token = create_token(payload)
                 response = redirect("posts:feeds")
                 response.set_cookie('jwt_token', token)
+                print(response)
                 
                 return response
             else:

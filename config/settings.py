@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'users.middleware.JWTTokenMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -132,12 +133,9 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 3
 LOGIN_REDIRECT_URL = '/posts/feeds/'
 SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
-# ACCOUNT_SESSION_REMEMBER = False
-# ACCOUNT_USERNAME_REQUIRED = False
-# ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
-# SOCIALACCOUNT_AUTO_SIGNUP = True
-SOCIALACCOUNT_ADAPTER = "users.adapters.UsersSocialAccountAdapter"
+# SOCIALACCOUNT_ADAPTER = "users.adapters.UsersSocialAccountAdapter"
 
 
 SOCIALACCOUNT_PROVIDERS = {
